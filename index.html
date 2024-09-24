@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="DuQuant: Distributing Outliers via Dual Transformation Makes Stronger Quantized LLMs">
+  <meta name="keywords" content="Model compression, Post-training Quantization">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>DuQuant: Distributing Outliers via Dual Transformation Makes Stronger Quantized LLMs</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/microphone.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">
+            <img src="static/images/microphone.png" style="width:1em;vertical-align: middle" alt="Logo"/>
+            <span>DuQuant: Distributing Outliers via Dual Transformation </span><span>Makes Stronger Quantized LLMs</span></h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://FelixMessi.github.io">Haokun Lin</a><sup>*1,3,4</sup>,</span>
+            <span class="author-block">
+              <a href="https://Hsu1023.github.io">Haobo Xu</a><sup>*2</sup>,</span>
+            <span class="author-block">
+              <a href="https://wuyichen-97.github.io">Yichen Wu</a><sup>*4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Jingzhi Cui</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=EbKa7iIAAAAJ">Yingtao Zhang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://linzhanm.github.io/">Linzhan Mou</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/site/aisquaredlab/">Linqi Song</a><sup>4</sup>
+            </span>
+            <span class="author-block">
+              <a href="http://www.cbsr.ia.ac.cn/users/znsun/">Zhenan Sun</a><sup>^1,3</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://wei-ying.net/">Ying Wei</a><sup>^5</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors"></div><br/>
+            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+            <span class="author-block"><sup>^</sup>Corresponding Authors</span><br/>
+            <span class="author-block"><sup>1</sup>School of Artificial Intelligence, University of Chinese Academy of Sciences</span><br/>
+            <span class="author-block"><sup>2</sup>Tsinghua University</span>
+            <span class="author-block"><sup>3</sup>NLPR & MAIS, Institute of Automation, Chinese Academy of Sciences</span><br/>
+            <span class="author-block"><sup>4</sup>City University of Hong Kong</span>
+            <span class="author-block"><sup>5</sup>Zhejiang University</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="column has-text-centered">
+    <div class="publication-links">
+      <!-- PDF Link. -->
+      <span class="link-block">
+        <a href="https://arxiv.org/pdf/2406.01721"
+            class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="fas fa-file-pdf"></i>
+          </span>
+          <span>Paper</span>
+        </a>
+      </span>
+      <span class="link-block">
+        <a href="https://arxiv.org/abs/2406.01721"
+            class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="ai ai-arxiv"></i>
+          </span>
+          <span>arXiv</span>
+        </a>
+      </span>
+      <!-- Video Link. -->
+      <!-- <span class="link-block">
+        <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+            class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="fab fa-youtube"></i>
+          </span>
+          <span>Video</span>
+        </a>
+      </span> -->
+      <!-- Code Link. -->
+      <span class="link-block">
+        <a href="https://github.com/Hsu1023/DuQuant"
+            class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="fab fa-github"></i>
+          </span>
+          <span>Code</span>
+          </a>
+      </span>
+      <!-- Dataset Link. -->
+      <!-- <span class="link-block">
+        <a href="https://github.com/google/nerfies/releases/tag/0.1"
+            class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="far fa-images"></i>
+          </span>
+          <span>Data</span>
+          </a> -->
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Quantization of large language models (LLMs) faces significant challenges, particularly due to the presence of outlier activations that impede efficient low-bit representation. Traditional approaches predominantly address <b>Normal Outliers</b>, which are activations across all tokens with relatively large magnitudes. </p>
+          <p>However, these methods struggle with smoothing <b>Massive Outliers</b> that display significantly larger values, which leads to significant performance degradation in low-bit quantization. </p>
+          <p>In this paper, we introduce DuQuant, a novel approach that utilizes rotation and permutation transformations to more effectively mitigate both massive and normal outliers. First, DuQuant starts by <b>constructing rotation matrices, using specific outlier dimensions as prior knowledge, to redistribute outliers to adjacent channels</b> by block-wise rotation. Second, We further <b>employ a zigzag permutation to balance the distribution of outliers across blocks</b>, thereby reducing block-wise variance. A subsequent rotation further smooths the activation landscape, enhancing model performance. DuQuant establishs new state-of-the-art baselines for 4-bit weight-activation quantization across various model types and downstream tasks.</p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Motivation</h2>
+          <p>
+            <img src="./static/images/outlier.png">
+          </p>
+          <p>
+            We first discover that massive outliers exist at the input of the down-projection layer within the FFN module. These outliers exhibit significantly larger magnitudes and are confined to a limited number of tokens. 
+            We further observe that these massive outliers are not effectively managed by existing quantization methods (e.g., SmoothQuant), leading to significant performance degradation in low-bit weight-activation quantization.
+            This motivates us to develop a novel approach that can more effectively eliminate both massive and normal outliers.
+          </p>
+            
+        </div>
+      </div>
+    <!--/ Concurrent Work. -->
+  </div>
+
+    <div class="container is-max-desktop"></div>
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Dual Transformation</h2>
+          <p>
+            <img src="./static/images/duquant.png">
+          </p>
+          <p>
+            We propose Rotation and Permutation Transformation to redistribute outliers among adjacent channels and different blocks.
+            The figure (a) shows the sequential transformations on Normal Outliers: ① initial rotation to reduce outliers within blocks, 
+            ② permutation to evenly distribute outliers across blocks, and ③ a second rotation for further smoothing.
+            The figure (b) presents the activation changes for Massive Outliers after applying DuQuant.
+            The figure (c) gives a sample matrix for highlighting the continual reduction of outliers through rotation and permutation, 
+            with outliers marked in dark blue.
+          </p>
+        </div>
+      </div>
+    <!--/ Concurrent Work. -->
+  </div>
+
+    <div class="container is-max-desktop"></div>
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Results</h2>
+          <li>DuQuant achieves SoTA performance in PPL evaluation under W4A4 quantization.<br/>
+          <p style="margin-top: 10px;">
+            <img src="./static/images/ppl.png">
+          </p>
+        </li>
+        <li>DuQuant showcases robustness towards LLaMA3-8B quantization.
+          <p style="margin-top: 10px;">
+            <img src="./static/images/llama3.png">
+          </p>
+          </li>
+        </div>
+      </div>
+    <!--/ Concurrent Work. -->
+  </div>
+
+    <div class="container is-max-desktop"></div>
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visualization</h2>
+          <p>
+            <img src="./static/images/llama2-70b.png">
+          </p>
+          <p>
+            The above figure shows the activation distribution of the LLaMA2-70B model before and after applying DuQuant.
+            More detailed activation change for LLMs after applying DuQuant are shown in paper Appendix. 
+            These visualizations demonstrate that DuQuant effectively redistributes outliers and smooths the activation landscape.
+          </p>
+        </div>
+      </div>
+    <!--/ Concurrent Work. -->
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{lin2024rotation,
+  title={Rotation and Permutation for Advanced Outlier Management and Efficient Quantization of LLMs},
+  author={Lin, Haokun and Xu, Haobo and Wu, Yichen and Cui, Jingzhi and Zhang, Yingtao and Mou, Linzhan and Song, Linqi and Sun, Zhenan and Wei, Ying},
+  journal={arXiv preprint arXiv:2406.01721},
+  year={2024}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns has-text-centered">
+      <div class="column is-12">
+        <div class="content">
+        <p>
+          We thank <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a> for the template.
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
