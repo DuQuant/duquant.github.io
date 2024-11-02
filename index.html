@@ -161,7 +161,7 @@
         <div class="content has-text-justified">
           <p>Quantization of large language models (LLMs) faces significant challenges, particularly due to the presence of outlier activations that impede efficient low-bit representation. Traditional approaches predominantly address <b>Normal Outliers</b>, which are activations across all tokens with relatively large magnitudes. </p>
           <p>However, these methods struggle with smoothing <b>Massive Outliers</b> that display significantly larger values, which leads to significant performance degradation in low-bit quantization. </p>
-          <p>In this paper, we introduce DuQuant, a novel approach that utilizes rotation and permutation transformations to more effectively mitigate both massive and normal outliers. First, DuQuant starts by <b>constructing rotation matrices, using specific outlier dimensions as prior knowledge, to redistribute outliers to adjacent channels</b> by block-wise rotation. Second, We further <b>employ a zigzag permutation to balance the distribution of outliers across blocks</b>, thereby reducing block-wise variance. A subsequent rotation further smooths the activation landscape, enhancing model performance. DuQuant establishs new state-of-the-art baselines for 4-bit weight-activation quantization across various model types and downstream tasks.</p>
+          <p>In this paper, we introduce DuQuant, a novel approach that utilizes rotation and permutation transformations to more effectively mitigate both massive and normal outliers. First, DuQuant starts by <b>constructing the rotation matrix, using specific outlier dimensions as prior knowledge, to redistribute outliers to adjacent channels</b> by block-wise rotation. Second, We further <b>employ a zigzag permutation to balance the distribution of outliers across blocks</b>, thereby reducing block-wise variance. A subsequent rotation further smooths the activation landscape, enhancing model performance. DuQuant establishs new state-of-the-art baselines for 4-bit weight-activation quantization across various model types and downstream tasks.</p>
         </div>
       </div>
     </div>
@@ -235,6 +235,11 @@
           <p style="margin-top: 10px;">
             <img src="./static/images/llama3.png">
           </p>
+          </li>
+          <li>DuQuant maintains performance comparable to <b>FP16 models</b> on the <b>LongBench</b> benchmark.
+            <p style="margin-top: 10px;">
+              <img src="./static/images/longbench.png">
+            </p>
           </li>
         </div>
       </div>
